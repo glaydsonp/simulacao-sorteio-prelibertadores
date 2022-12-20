@@ -3,4 +3,8 @@ div.w-screen.h-screen {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  img {
+    max-height: 40px;
+  }
 }

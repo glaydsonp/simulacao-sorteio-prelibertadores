@@ -28,43 +28,108 @@
     </button>
   </div>
 
-  <div class="flex flex-col w-3/4 justify-center mx-auto">
-    <div
-      class="p-4 border border-solid border-gray-200 mb-4 rounded"
-      style="background-color: #182747cc"
-    >
-      <p class="text-lg font-bold w-full text-center mb-2">Fase um</p>
-      <ng-container
-        *ngFor="let confronto of chaves.primeiraFase; let index = index"
+  <div class="flex w-3/4 justify-between mx-auto">
+    <div class="w-3/5 flex flex-col mr-4">
+      <div
+        class="p-4 border border-solid border-gray-200 mb-4 rounded"
+        style="background-color: #182747cc"
       >
-        <p class="p-4 border border-solid border-gray-200">
-          {{ confronto.descricao }}:
-          <ng-container *ngFor="let time of confronto.times; let first = first">
-            <ng-container *ngIf="first"> {{ time }} x </ng-container>
-            <ng-container *ngIf="!first"> {{ time }}</ng-container>
-          </ng-container>
-        </p>
-      </ng-container>
+        <p class="text-lg font-bold w-full text-center mb-2">Fase um</p>
+        <ng-container
+          *ngFor="let confronto of chaves.primeiraFase; let index = index"
+        >
+          <p
+            class="p-4 flex items-center justify-between border border-solid border-gray-200 text-center"
+          >
+            {{ confronto.descricao }}:
+            <ng-container
+              *ngFor="let time of confronto.times; let first = first"
+            >
+              <ng-container *ngIf="first">
+                <img [src]="time.imagem" [alt]="time.nome" /> x
+              </ng-container>
+              <ng-container *ngIf="!first">
+                <img [src]="time.imagem" [alt]="time.nome"
+              /></ng-container>
+            </ng-container>
+          </p>
+        </ng-container>
+      </div>
+
+      <div
+        class="p-4 border border-solid border-gray-200 mb-4 rounded"
+        style="background-color: #182747cc"
+      >
+        <p class="text-lg font-bold w-full text-center mb-2">Fase dois</p>
+        <ng-container
+          *ngFor="let confronto of chaves.segundaFase; let index = index"
+        >
+          <p
+            class="p-4 flex items-center justify-between border border-solid border-gray-200 text-center"
+          >
+            {{ confronto.descricao }}:
+            <ng-container
+              *ngFor="let time of confronto.times; let first = first"
+            >
+              <ng-container *ngIf="first">
+                <img [src]="time.imagem" [alt]="time.nome" /> x
+              </ng-container>
+              <ng-container *ngIf="!first">
+                <img [src]="time.imagem" [alt]="time.nome"
+              /></ng-container>
+            </ng-container>
+          </p>
+        </ng-container>
+      </div>
     </div>
 
-    <div
-      class="p-4 border border-solid border-gray-200 mb-4 rounded"
-      style="background-color: #182747cc"
-    >
-      <p class="text-lg font-bold w-full text-center mb-2">Fase dois</p>
-      <ng-container
-        *ngFor="let confronto of chaves.segundaFase; let index = index"
+    <div class="w-1/5 flex flex-col">
+      <div
+        class="p-4 border border-solid border-gray-200 mb-4 rounded"
+        style="background-color: #182747cc"
       >
-        <p class="p-4 border border-solid border-gray-200">
-          {{ confronto.descricao }}:
-          <ng-container *ngFor="let time of confronto.times; let first = first">
-            <ng-container *ngIf="first"> {{ time }} x </ng-container>
-            <ng-container *ngIf="!first"> {{ time }}</ng-container>
-          </ng-container>
+        <p class="text-lg font-bold w-full text-center mb-2">
+          Times disponíveis:
         </p>
-      </ng-container>
-    </div>
 
+        <p class="font-bold w-full text-center mb-2">Fase 1 - pote 1:</p>
+        <ng-container *ngFor="let time of times.faseUmPoteUm">
+          <p class="text-center">
+            <img [src]="time.imagem" [alt]="time.nome" />
+          </p>
+        </ng-container>
+
+        <div class="border border-solid border-white mt-2"></div>
+
+        <p class="font-bold w-full text-center mt-2">Fase 1 - pote 2:</p>
+        <ng-container *ngFor="let time of times.faseUmPoteDois">
+          <p class="text-center">
+            <img [src]="time.imagem" [alt]="time.nome" />
+          </p>
+        </ng-container>
+
+        <div class="border border-solid border-white mt-2"></div>
+
+        <p class="font-bold w-full text-center mt-2">Fase 2 - pote 1:</p>
+        <ng-container *ngFor="let time of times.faseDoisPoteUm">
+          <p class="text-center">
+            <img [src]="time.imagem" [alt]="time.nome" />
+          </p>
+        </ng-container>
+
+        <div class="border border-solid border-white mt-2"></div>
+
+        <p class="font-bold w-full text-center mt-2">Fase 2 - pote 2:</p>
+        <ng-container *ngFor="let time of times.faseDoisPoteDois">
+          <p class="text-center">
+            <img [src]="time.imagem" [alt]="time.nome" />
+          </p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 90vw; margin: 1rem auto">
     <div
       class="p-4 border border-solid border-gray-200 mb-4 rounded"
       style="background-color: #182747cc"
@@ -73,13 +138,23 @@
       <ng-container
         *ngFor="let confronto of chaves.terceiraFase; let index = index"
       >
-        <p class="p-4 border border-solid border-gray-200">
+        <p
+          class="p-4 flex items-center justify-between border border-solid border-gray-200 text-center"
+        >
           {{ confronto.descricao }}:
           <ng-container *ngFor="let time of confronto.times; let index = index">
-            <ng-container *ngIf="index === 0">{{ time }}/</ng-container>
-            <ng-container *ngIf="index === 1">{{ time }} x </ng-container>
-            <ng-container *ngIf="index === 2">{{ time }}/</ng-container>
-            <ng-container *ngIf="index === 3">{{ time }}</ng-container>
+            <ng-container *ngIf="index === 0">
+              <img [src]="time.imagem" [alt]="time.nome" />/
+            </ng-container>
+            <ng-container *ngIf="index === 1">
+              <img [src]="time.imagem" [alt]="time.nome" /> x
+            </ng-container>
+            <ng-container *ngIf="index === 2">
+              <img [src]="time.imagem" [alt]="time.nome" />/
+            </ng-container>
+            <ng-container *ngIf="index === 3">
+              <img [src]="time.imagem" [alt]="time.nome"
+            /></ng-container>
           </ng-container>
         </p>
       </ng-container>
